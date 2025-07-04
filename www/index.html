@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Infinite Bloom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 3rem; }
+    .orbit-logo-container {
+      position: relative;
+      width: min(60vw, 340px);
+      height: min(60vw, 340px);
+      margin: 0rem auto -5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: contain;
+      z-index: 2;
+      /*box-shadow: 0 0 24px #00bcd4aa;*/
+      background: transparent;
+      max-width: 600px;
+      max-height: 600px;
+      min-width: 100px;
+      min-height: 100px;
+      transition: width 0.4s, height 0.4s;
+    }
+    .orbit-path {
+      position: absolute;
+      top: 75%;
+      left: 75%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-75%, -75%);
+      z-index: 4;
+      pointer-events: none;
+      background: transparent !important;
+      border: none !important;
+    }
+    .orbit-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 28px;
+      height: 28px;
+      background: #00bcd4;
+      border-radius: 50%;
+      box-shadow: 0 0 24px 8px #00bcd4cc, 0 0 48px 16px #00bcd4aa;
+      transform: translate(-50%, -50%) rotate(0deg) translateY(-130px);
+      animation: orbit 3.0s linear infinite;
+      z-index: 3;
+    }
+    @keyframes orbit {
+      0%   { transform: translate(-50%, -50%) rotate(0deg) translateY(-130px);}
+      100% { transform: translate(-50%, -50%) rotate(360deg) translateY(-130px);}
+    }
+    @media (max-width: 600px) {
+      .orbit-logo-container {
+        width: min(90vw, 340px);
+        height: min(90vw, 340px);
+      }
+      .logo-img {
+        max-width: 600px;
+        max-height: 600px;
+        min-width: 60px;
+        min-height: 60px;
+        background: transparent !important;
+        border: none !important;
+      }
+      .orbit-dot {
+        min-width: 12px;
+        min-height: 12px;
+        max-width: 20px;
+        max-height: 20px;
+      }
+    }
+    .hero-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 1rem 2rem 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-family: 'Georgia', serif;
+      text-align: center;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .highlight {
+      color: #00bcd4;
+    }
+    .cycling-words {
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      min-width: 100px;
+      height: 2.5rem;
+      position: relative;
+    }
+    .cycling-word {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s, transform 0.5s;
+      font-weight: 600;
+      color: #222;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    .cycling-word.active {
+      opacity: 1;
+      transform: translateY(0);
+      z-index: 1;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 1rem auto 0 auto;
+      text-align: center;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .hero-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: none;
+      background: #00bcd4;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    .hero-btn.outline {
+      background: #fff;
+      color: #00bcd4;
+      border: 2px solid #00bcd4;
+    }
+    .hero-btn.secondary {
+      background: #e0f7fa;
+      color: #00bcd4;
+    }
+    .hero-btn:hover {
+      background: #0097a7;
+      color: #fff;
+    }
+    .hero-btn.outline:hover {
+      background: #00bcd4;
+      color: #fff;
+    }
+    .icon {
+      font-size: 1.2em;
+    }
+    .hero-input {
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      border: 2px solid #00bcd4;
+      margin-right: 0.5rem;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="landing-content">
+    <div class="orbit-logo-container">
+      <div class="orbit-path">
+        <div class="orbit-dot"></div>
+      </div>
+      <img src="assets/infinitebloomlogo.png" alt="Infinite Bloom Logo" class="logo-img">
+    </div>
+    <div class="hero-container">
+      <div>
+        <h1 class="hero-title">
+          <span class="highlight">This is something</span>
+          <span class="cycling-words">
+            <span class="cycling-word">amazing</span>
+            <span class="cycling-word">new</span>
+            <span class="cycling-word">wonderful</span>
+            <span class="cycling-word">beautiful</span>
+            <span class="cycling-word">smart</span>
+          </span>
+        </h1>
+        <p class="hero-desc">
+          Managing a small business today is already tough. Avoid further
+          complications by ditching outdated, tedious trade methods. Our
+          goal is to streamline SMB trade, making it easier and faster than
+          ever.
+        </p>
+      </div>
+      <div id="login" class="hero-actions">
+        <input type="password" id="password" placeholder="Enter password" class="hero-input" />
+        <button class="hero-btn" onclick="checkPassword()">Enter</button>
+      </div>
+    </div>
+  </div>
+  <!-- Flipbook container, initially empty -->
+  <div id="flipbook-container"></div>
+
+   <script>
+    function checkPassword() {
+      const pass = document.getElementById('password').value;
+      if (pass === 'openbook') {
+        document.getElementById('login').style.display = 'none';
+        document.getElementById('landing-content').style.display = 'none'; // Hide all landing content
+        // 1. Inject the flipbook HTML
+        document.getElementById('flipbook-container').innerHTML = `
+          <div id="tmpLoading" style="width: 100%; height: 100%; position: absolute; z-index: -2;background:#323232;"></div>
+        `;
+        // --- Scan and rewrite asset paths in flipbook container ---
+        function rewriteAssetPaths(container) {
+          const selector = '[src], [href]';
+          const attrs = ['src', 'href'];
+          const prefixFolders = ['files', 'style', 'pageConfig', 'thumb', 'audio', 'icon', 'images', 'img', 'javascript'];
+          const prefixRegex = new RegExp('^/(' + prefixFolders.join('|') + ')/');
+          container.querySelectorAll(selector).forEach(function(el) {
+            attrs.forEach(function(attr) {
+              let val = el.getAttribute(attr);
+              if (val && prefixRegex.test(val)) {
+                el.setAttribute(attr, 'flipbook' + val);
+              }
+            });
+          });
+        }
+        rewriteAssetPaths(document.getElementById('flipbook-container'));
+        // --- Optionally patch innerHTML globally ---
+        (function() {
+          const prefixFolders = ['files', 'style', 'pageConfig', 'thumb', 'audio', 'icon', 'images', 'img', 'javascript'];
+          const prefixRegex = new RegExp('(["\'=])(/(' + prefixFolders.join('|') + ')/)', 'g');
+          const origInnerHTML = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+          Object.defineProperty(Element.prototype, 'innerHTML', {
+            set: function(value) {
+              if (typeof value === 'string') {
+                value = value.replace(prefixRegex, '$1flipbook/$3/');
+              }
+              origInnerHTML.set.call(this, value);
+            },
+            get: origInnerHTML.get
+          });
+        })();
+        // --- Robust global asset path patcher ---
+        (function() {
+          // Helper to check if a path is relative or root-relative and needs prefixing
+          function needsPrefix(value) {
+            return (
+              typeof value === 'string' &&
+              !value.startsWith('flipbook/') &&
+              !value.startsWith('http') &&
+              !value.startsWith('data:') &&
+              (
+                /^(files|style|pageConfig|thumb|audio|icon|images|img|javascript)\//.test(value) ||
+                /^\/(files|style|pageConfig|thumb|audio|icon|images|img|javascript)\//.test(value)
+              )
+            );
+          }
+          // Prefix logic: remove leading slash if present, then add 'flipbook/'
+          function prefixPath(value) {
+            return 'flipbook/' + value.replace(/^\//, '');
+          }
+          // Patch property setters for src/href
+          ['img','audio','video','link','script'].forEach(function(tag) {
+            var proto = document.createElement(tag).constructor.prototype;
+            ['src','href'].forEach(function(attr) {
+              var desc = Object.getOwnPropertyDescriptor(proto, attr);
+              if (desc && desc.set) {
+                Object.defineProperty(proto, attr, {
+                  set: function(value) {
+                    if (needsPrefix(value)) value = prefixPath(value);
+                    desc.set.call(this, value);
+                  },
+                  get: desc.get
+                });
+              }
+            });
+            // Patch setAttribute
+            var origSetAttribute = proto.setAttribute;
+            proto.setAttribute = function(name, value) {
+              if ((name === 'src' || name === 'href') && needsPrefix(value)) {
+                value = prefixPath(value);
+              }
+              return origSetAttribute.call(this, name, value);
+            };
+          });
+          // Patch jQuery's attr if present
+          if (window.jQuery && window.jQuery.fn && window.jQuery.fn.attr) {
+            var origJqAttr = window.jQuery.fn.attr;
+            window.jQuery.fn.attr = function(name, value) {
+              if ((name === 'src' || name === 'href') && typeof value === 'string' && needsPrefix(value)) {
+                value = prefixPath(value);
+              }
+              return origJqAttr.apply(this, arguments.length === 2 ? [name, value] : arguments);
+            };
+          }
+        })();
+        // --- End robust global asset path patcher ---
+        // 2. Helper to inject CSS
+        function loadCSS(href) {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = href;
+          document.head.appendChild(link);
+        }
+        // 3. Helper to inject JS (in order)
+        function loadJS(src, callback) {
+          var script = document.createElement('script');
+          script.src = src;
+          script.onload = callback;
+          document.body.appendChild(script);
+        }
+        // 4. List of CSS and JS files (in order)
+        const cssFiles = [
+          'flipbook/style/style.css',
+          'flipbook/style/flipbook.min.css',
+          'flipbook/files/yzReader/templates/Slide/css/app.css',
+          'flipbook/files/yzReader/templates/Slide/css/chunk-vendors.css',
+          'flipbook/style/hiSlider2.min.css'
+        ];
+        const jsFiles = [
+          'flipbook/javascript/config.js',
+          'flipbook/javascript/LoadingJS.js',
+          'flipbook/javascript/deString.js',
+          'flipbook/javascript/jquery-3.7.1.min.js',
+          'flipbook/javascript/book.min.js',
+          'flipbook/javascript/pageItems.min.js',
+          'flipbook/javascript/main.min.js',
+          'flipbook/files/pageEditor.js',
+          'flipbook/files/textSvgConfig.js',
+          'flipbook/files/yzReader/templates/Slide/js/app.js',
+          'flipbook/files/yzReader/templates/Slide/js/chunk-vendors.js',
+          'flipbook/javascript/flipHtml5.hiSlider2.min.js',
+          'flipbook/slide_javascript/slideJS.js'
+        ];
+        // 5. Inject CSS
+        cssFiles.forEach(loadCSS);
+        // 6. Inject JS in order (important for dependencies)
+        function loadScriptsSequentially(scripts, index = 0) {
+          if (index >= scripts.length) {
+            // All scripts loaded
+            window.readerConfigLoaded = true;
+            return;
+          }
+          loadJS(scripts[index], function() {
+            loadScriptsSequentially(scripts, index + 1);
+          });
+        }
+        loadScriptsSequentially(jsFiles);
+      } else {
+        alert('Nope. Try again, infinite soul.');
+      }
+    }
+
+    document.addEventListener('keydown', function(event) {
+    const passwordField = document.getElementById('password');
+    const loginBoxVisible = document.getElementById('login').style.display !== 'none';
+    if (event.key === 'Enter' && passwordField === document.activeElement && loginBoxVisible) {
+      checkPassword();
+    }
+  });
+
+    // Cycling words animation
+    const words = document.querySelectorAll('.cycling-word');
+    let current = 0;
+    function showWord(index) {
+      words.forEach((word, i) => {
+        word.classList.toggle('active', i === index);
+      });
+    }
+    function cycleWords() {
+      current = (current + 1) % words.length;
+      showWord(current);
+    }
+    showWord(current);
+    setInterval(cycleWords, 2000);
+  </script>
+</body>
+</html>
